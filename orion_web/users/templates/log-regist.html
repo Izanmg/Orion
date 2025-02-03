@@ -9,11 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static 'script.js' %}"></script> 
 </head>
-<body class="items-center font-mono flex justify-center h-screen bg-white">
-    <header class="flex flex-col items-center pt-4 pl-4 absolute top-0 left-0">
-        <img src="{% static 'img/logo-simple-png.png' %}" width="50px" class="mx-3">
-        <h3 class="font-bold text-2xl text-[#05141E]">Orion</h3>
-    </header>
+<body class="items-center font-mono flex justify-center h-screen bg-white" style="background-image: url('{% static 'img/log-regist.webp' %}'); background-size: cover; background-position: center;">
 
     <section class="mt-24 lg:mt-0 flex flex-col justify-center items-center mx-3 lg:w-[45%] w-full max-w-[37rem] px-4 py-6 lg:px-0">
         <article class="flex flex-col justify-center items-center bg-white rounded-lg p-6 shadow-md shadow-lg shadow-gray-500 w-full lg:w-[80%]">
@@ -53,12 +49,19 @@
                     <p class="text-gray-600">Crea tu cuenta con tu correo electrónico y una contraseña.</p>
                 </div>
                 <div class="flex flex-col w-full">
+                    <input placeholder="Nombre" type="text" 
+                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input placeholder="Apellidos" type="text" 
+                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input placeholder="Nombre de usuario" type="text" 
+                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <input placeholder="Correo electrónico" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <input placeholder="Contraseña" type="password" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <input placeholder="Confirmar Contraseña" type="password" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <button class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Siguiente</button>
                     <button class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
                 </div>
                 <div class="flex items-center w-full my-6">
