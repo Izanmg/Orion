@@ -9,12 +9,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="items-center font-mono flex justify-center h-screen bg-white" style="background-image: url('{% static 'img/log-regist.webp' %}'); background-size: cover; background-position: center;">
-    <a href="../"><img src="{% static 'img/flecha.png' %}" width="60px" class="absolute top-[25px] left-[20px] invert"></a>
+    <a href="../"><img src="{% static 'img/flecha.png' %}" width="50px" class="absolute top-[25px] left-[20px] invert"></a>
     <section class="mt-24 lg:mt-0 flex flex-col justify-center items-center mx-3 lg:w-[45%] w-full max-w-[37rem] px-4 py-6 lg:px-0">
         <article class="flex flex-col justify-center items-center bg-white rounded-lg p-6 shadow-md shadow-lg shadow-gray-500 w-full lg:w-[80%]">
 
             <!-- Formulario de registro -->
-            <form class="flex flex-col items-center w-full">
+            <form method="post" class="flex flex-col items-center w-full">
+                {% csrf_token %}
+
+                {% if messages %}
+                    <div class="text-red-500 text-sm mb-4">
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
                 <div class="mb-6 text-center">
                     <button type="button" id="step-back" class="flex justify-left hidden"><img src="{% static 'img/flecha_redonda.png' %}" width="45px"></button>
                     <h1 class="text-4xl font-bold text-[#05141E] mb-[2px]">Registrarse</h1>
@@ -22,24 +34,24 @@
                 </div>
                 <!-- Primer paso (Nombre, Apellidos, Nombre de usuario) -->
                 <div class="flex flex-col w-full" id="first-step">
-                    <input placeholder="Nombre" type="text" 
+                    <input name="first_name" placeholder="Nombre" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input placeholder="Apellidos" type="text" 
+                    <input name="last_name" placeholder="Apellidos" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input placeholder="Nombre de usuario" type="text" 
+                    <input name="username" placeholder="Nombre de usuario" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <button type="button" id="next-step" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Siguiente</button>
                 </div>
                 
                 <!-- Segundo paso (Correo electrónico, Contraseña, Confirmar Contraseña) -->
                 <div class="flex flex-col w-full hidden" id="second-step">
-                    <input placeholder="Correo electrónico" type="text" 
+                    <input name="email" placeholder="Correo electrónico" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input placeholder="Contraseña" type="password" 
+                    <input name="password1" placeholder="Contraseña" type="password" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input placeholder="Confirmar Contraseña" type="password" 
+                    <input name="password2" placeholder="Confirmar Contraseña" type="password" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <button class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
+                    <button type="submit" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
                 </div>
             
                 <div class="flex items-center w-full my-6">
