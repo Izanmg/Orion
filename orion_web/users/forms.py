@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser  # Asegúrate de importar tu modelo
 from django.core.exceptions import ValidationError
 
@@ -35,5 +35,13 @@ class UserForm(UserCreationForm):
             raise ValidationError("Las contraseñas no coinciden")
         return password2
         
+class LoginForm(AuthenticationForm):
+    email = forms.EmailField(required=True,error_messages={'required':'Debes especificar el correo electronico'})
+    password = forms.CharField(required=True,error_messages={'required':'Debes escribir la contrseña'})
+
+    class Meta:
+        model = CustomUser
+        fields = ["email", "password"]
+
 
 
