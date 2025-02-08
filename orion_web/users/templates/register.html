@@ -8,6 +8,8 @@
     <title>Orion</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<!-- <body class="items-center font-mono flex justify-center h-screen bg-gradient-to-r from-[#F7F6F7] to-[#E6E8EB]"> -->
+
 <body class="items-center font-mono flex justify-center h-screen bg-white" style="background-image: url('{% static 'img/log-regist.webp' %}'); background-size: cover; background-position: center;">
     <a href="../"><img src="{% static 'img/flecha.png' %}" width="50px" class="absolute top-[25px] left-[20px] invert"></a>
     <section class="mt-24 lg:mt-0 flex flex-col justify-center items-center mx-3 lg:w-[45%] w-full max-w-[37rem] px-4 py-6 lg:px-0">
@@ -32,27 +34,22 @@
                     <h1 class="text-4xl font-bold text-[#05141E] mb-[2px]">Registrarse</h1>
                     <p class="text-gray-600">Crea tu cuenta con tu correo electrónico y una contraseña.</p>
                 </div>
-                <!-- Primer paso (Nombre, Apellidos, Nombre de usuario) -->
-                <div class="flex flex-col w-full" id="first-step">
-                    <input name="first_name" placeholder="Nombre" type="text" 
+
+
+                    <input name="username" placeholder="{% if form.username.errors %}{{ form.username.errors.0 }}{% else %}Nombre de usuario{% endif %}" type="text" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder-red-500 border-red-500 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="email" placeholder="{% if form.email.errors %}{{ form.email.errors.0 }}{% else %}Correo electrónico{% endif %}" type="email" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder-red-500 border-red-500 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="password1" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder-red-500 border-red-500 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="password2" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Confirmar Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder-red-500 border-red-500 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+
+                    <!-- <input name="username" placeholder="Nombre de usuario" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="last_name" placeholder="Apellidos" type="text" 
-                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="username" placeholder="Nombre de usuario" type="text" 
-                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <button type="button" id="next-step" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Siguiente</button>
-                </div>
-                
-                <!-- Segundo paso (Correo electrónico, Contraseña, Confirmar Contraseña) -->
-                <div class="flex flex-col w-full hidden" id="second-step">
                     <input name="email" placeholder="Correo electrónico" type="text" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <input name="password1" placeholder="Contraseña" type="password" 
                         class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
                     <input name="password2" placeholder="Confirmar Contraseña" type="password" 
-                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                        class="mb-4 text-[19px] rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full"> -->
                     <button type="submit" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
-                </div>
             
                 <div class="flex items-center w-full my-6">
                     <div class="border-t border-gray-300 flex-grow"></div>
