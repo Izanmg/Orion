@@ -14,17 +14,18 @@ def home(request):
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
-        print("1--Aqui llega--")
         if form.is_valid():
-            print("2--Aqui llega--")
-            email = form.cleaned_data.get("email")
+            username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-            user = authenticate(request,email,password)
-            print(password+email)
+            user = authenticate(request,username=username,password=password)
             login(request,user)
             return redirect("home")
+        else:
+            return render(request,"login.html",{"form":form})
     form = LoginForm()
     return render(request, "login.html",{"form": form})
+
+
 
 def register(request):
     if request.method == "POST":
