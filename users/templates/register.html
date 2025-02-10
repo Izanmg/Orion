@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <title>Orion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="items-center font-mono flex justify-center h-screen bg-gradient-to-r from-[#F7F6F7] to-[#E6E8EB]">
+
+<!-- <body class="items-center font-mono flex justify-center h-screen bg-white" style="background-image: url('{% static 'img/log-regist.webp' %}'); background-size: cover; background-position: center;"> -->
+    <a href="../"><img src="{% static 'img/flecha.png' %}" width="50px" class="absolute top-[25px] left-[20px]"></a>
+    <section class="mt-24 lg:mt-0 flex flex-col justify-center items-center mx-3 lg:w-[45%] w-full max-w-[37rem] px-4 py-6 lg:px-0">
+        <article class="flex flex-col justify-center items-center bg-white rounded-lg p-6 shadow-md shadow-lg shadow-gray-500 w-full lg:w-[80%]">
+
+            <!-- Formulario de registro -->
+            <form method="post" class="flex flex-col items-center w-full">
+                {% csrf_token %}
+                <div class="mb-6 text-center">
+                    <h1 class="text-4xl font-bold text-[#05141E] mb-[2px]">Registrarse</h1>
+                    <p class="text-gray-600">Crea tu cuenta con tu correo electrónico, nombre de usuario y una contraseña.</p>
+                </div>
+
+
+                    <input name="username" {% if form.password.errors or form.email.errors and not form.username.errors %} value="{{form.username.value}}" {% endif %} placeholder="{% if form.username.errors %}{{ form.username.errors.0 }}{% else %}Nombre de usuario{% endif %}" type="text" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="email" {% if form.password.errors or form.username.errors and not form.email.errors %} value="{{form.email.value}}" {% endif %} placeholder="{% if form.email.errors %}{{ form.email.errors.0 }}{% else %}Correo electrónico{% endif %}" type="email" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="password1" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="password2" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Confirmar Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+
+                    <button type="submit" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
+            
+                <div class="flex items-center w-full my-6">
+                    <div class="border-t border-gray-300 flex-grow"></div>
+                    <span class="mx-3 text-gray-500">¿Ya tienes cuenta?</span>
+                    <div class="border-t border-gray-300 flex-grow"></div>
+                </div>
+            </form>
+            
+            
+            <!-- Boton para cambiar entre formularios -->
+            <a href="/login/" class="w-full"><button class="w-full py-2 px-4 bg-white text-[#05141E] font-semibold rounded-lg border border-gray-300 shadow-md hover:bg-gray-100 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#05141E] focus:ring-opacity-50 mt-2" >Iniciar sesión</button></a>
+
+        </article>
+        
+    </section>
+</body>
+</html>
