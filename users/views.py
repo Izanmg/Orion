@@ -26,6 +26,22 @@ def home(request):
                 user = request.user
                 user.username = form.cleaned_data.get('username')
                 user.save()
+            elif form.cleaned_data.get('first_name'):
+                print("Modificando nombre")
+                user = request.user
+                user.first_name = form.cleaned_data.get('first_name')
+                user.save()
+            elif form.cleaned_data.get('last_name'):
+                print("Modificando apellido")
+                user = request.user
+                user.last_name = form.cleaned_data.get('last_name')
+                user.save()
+            elif form.cleaned_data.get('email'):
+                print("Modificando email")
+                user = request.user
+                user.email = form.cleaned_data.get('email')
+                user.save()
+
         else:
             print("Hay problemitas")
             print(form.errors)

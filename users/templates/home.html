@@ -32,7 +32,7 @@
                 <div class="mb-4">
                     
                     <label for="nombre" class="block text-lg font-semibold mb-2">Nombre</label>
-                    <input type="text" id="name" name="nombre" value="{{ user.first_name }}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#05141E]">
+                    <input type="text" id="name" name="first_name" value="{{ user.first_name }}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#05141E]">
                     <span id="modificar-nombre" class="text-black underline cursor-pointer pt-2 inline-block"
                           onclick="enableEdit('name', 'modificar-nombre', 'edit-options-nombre')">
                         Modificar
@@ -50,7 +50,7 @@
                 <!-- Campo Apellidos -->
                 <div class="mb-4">
                     <label for="apellidos" class="block text-lg font-semibold mb-2">Apellidos</label>
-                    <input type="text" id="apellidos" name="apellidos" value="{{ user.last_name }}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#05141E]">
+                    <input type="text" id="apellidos" name="last_name" value="{{ user.last_name }}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#05141E]">
                     <span id="modificar-apellidos" class="text-black underline cursor-pointer pt-2 inline-block"
                           onclick="enableEdit('apellidos', 'modificar-apellidos', 'edit-options-apellidos')">
                         Modificar
@@ -68,7 +68,7 @@
                 <!-- Campo Nombre de Usuario -->
                 <div class="mb-4">
                     <label for="username" class="block text-lg font-semibold mb-2">Nombre de Usuario</label>
-                    <input type="text" id="username" name="username" value="{{ user.username }}" disabled class="w-full px-4 py-2 border {% if form.username.errors %} border-red-400 bg-red-100 {% else %} border-gray-300 {% endif %} rounded-lg focus:outline-none focus:border-[#05141E]">
+                    <input type="text" id="username" name="username" value="{{ user.username }}" disabled class="w-full px-4 py-2 border {% if form.username.errors %} border-red-400 {% else %} border-gray-300 {% endif %} rounded-lg focus:outline-none focus:border-[#05141E]">
                     {% if form.username.errors %}
                         <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
                     {% endif %}
@@ -89,7 +89,10 @@
                 <!-- Campo Correo Electrónico -->
                 <div class="mb-4">
                     <label for="email" class="block text-lg font-semibold mb-2">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" value="{{ user.email }}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#05141E]">
+                    <input type="email" id="email" name="email" value="{{ user.email }}" disabled class="w-full px-4 py-2 border {% if form.email.errors %} border-red-400 {% else %} border-gray-300 {% endif %} rounded-lg focus:outline-none focus:border-[#05141E]">
+                    {% if form.email.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                    {% endif %}
                     <span id="modificar-email" class="text-black underline cursor-pointer pt-2 inline-block"
                           onclick="enableEdit('email', 'modificar-email', 'edit-options-email')">
                         Modificar

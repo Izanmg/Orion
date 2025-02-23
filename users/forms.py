@@ -86,8 +86,8 @@ class UpdateForm(UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = [
-            'nombre',
-            'apellidos',
+            'first_name',
+            'last_name',
             'username',
             'email',
 
@@ -99,6 +99,7 @@ class UpdateForm(UserChangeForm):
 
 
     def clean_username(self):
+        print("clean_username")
         username = self.cleaned_data.get('username')
         user = str(self.user.username)
         if username == user:
@@ -108,6 +109,34 @@ class UpdateForm(UserChangeForm):
         
         return username
     
+    def clean_first_name(self):
+        print("clean_first_name")
+        first_name = self.cleaned_data.get('first_name')
+        user_first_name = str(self.user.first_name)
+        if first_name == user_first_name:
+            return
+        return first_name
+    
+    def clean_last_name(self):
+        print("clean_last_name")
+        last_name = self.cleaned_data.get('last_name')
+        user_last_name = str(self.user.last_name)
+        if last_name == user_last_name:
+            return
+        return last_name
+    
+    def clean_email(self):
+        print("clean_email")
+        email = self.cleaned_data.get('email')
+        user_email = str(self.user.email)
+        print("email: ",email, "user_email: ", user_email)
+        print("email: ",type(email), "user_email: ", type(user_email))
+        if email != '':
+            if email == user_email:
+                return
+            elif User.objects.filter(email=email).exists():
+                raise ValidationError("El correo electronico ya esta en uso")
+        return email
 class UpdatePassword(PasswordChangeForm):
 
     class Meta:
