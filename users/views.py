@@ -1,14 +1,34 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, LoginForm
+from .forms import UserForm, LoginForm, UpdateForm
 
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
+
+"""
+ =====================
+ Lo que se pone aqui es lo que se ejecuta, lo que se pone en el forms.py solo son las comprovaciones de que los datos del formulario esten correctos
+ es decir que todas las funciones van en este archivo, el otro solamente tiene validaciones.
+ =====================
+"""
 @login_required
 def home(request):
+    if request.method == "POST":
+        print("=====")
+        print(request.POST)
+        print("UserID: ",request.user.id)
+        form = UpdateForm(request.POST, user=request.user)
+        if form.is_valid():
+            print("Todo correcto")
+        else:
+            print("Hay problemitas")
+            print(form.errors)
+            return render(request, "home.html",{"form":form})
+        return redirect("home")
+
     return render(request,"home.html")
 
 def login_view(request):

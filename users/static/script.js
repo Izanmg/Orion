@@ -4,6 +4,7 @@ function enableEdit(inputId, modificarId, optionsId) {
     document.getElementById(modificarId).style.display = 'none';
     document.getElementById(optionsId).classList.remove('hidden');
 }
+
 function cancelEdit(inputId, modificarId, optionsId, originalValue) {
     document.getElementById(inputId).value = originalValue;
     document.getElementById(inputId).disabled = true;
@@ -20,6 +21,10 @@ function confirmEdit(inputId, modificarId, optionsId) {
 function enablePasswordEdit() {
     document.getElementById('default-password').classList.add('hidden');
     document.getElementById('edit-options-password').classList.remove('hidden');
+    document.getElementById('current-password').disabled = false;
+    document.getElementById('new-password').disabled = false;
+    document.getElementById('confirm-password').disabled = false;
+
 }
 function cancelPasswordEdit() {
     document.getElementById('edit-options-password').classList.add('hidden');
@@ -27,6 +32,9 @@ function cancelPasswordEdit() {
     document.getElementById('current-password').value = '';
     document.getElementById('new-password').value = '';
     document.getElementById('confirm-password').value = '';
+    document.getElementById('current-password').disabled = true;
+    document.getElementById('new-password').disabled = true;
+    document.getElementById('confirm-password').disabled = true;
 }
 function confirmPasswordEdit() {
     document.getElementById('edit-options-password').classList.add('hidden');
