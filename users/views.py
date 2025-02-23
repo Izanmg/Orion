@@ -22,7 +22,10 @@ def home(request):
         print("UserID: ",request.user.id)
         form = UpdateForm(request.POST, user=request.user)
         if form.is_valid():
-            print("Todo correcto")
+            if form.cleaned_data.get('username'):
+                user = request.user
+                user.username = form.cleaned_data.get('username')
+                user.save()
         else:
             print("Hay problemitas")
             print(form.errors)

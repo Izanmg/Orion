@@ -101,16 +101,11 @@ class UpdateForm(UserChangeForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         user = str(self.user.username)
-           
-        if username is None or username == '':
-            print("Error. Debes escribir algo")
-            raise ValidationError("Debes escribir algo")     
-        elif username == user:
+        if username == user:
             return
         elif User.objects.filter(username=username).exists():
-            print("Error. El usuario existe")
             raise ValidationError("El usuario ya esta en uso")
-            
+        
         return username
     
 class UpdatePassword(PasswordChangeForm):
