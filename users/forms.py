@@ -137,16 +137,63 @@ class UpdateForm(UserChangeForm):
             elif User.objects.filter(email=email).exists():
                 raise ValidationError("El correo electronico ya esta en uso")
         return email
+
+# Modificar este form, PasswordChangeForm espera por defecto los campos "old_password, new_password1, new_password2"
 class UpdatePassword(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput,required=True,error_messages={'required':'Este campo es obligatorio'})
+    new_password1 = forms.CharField(widget=forms.PasswordInput,required=True,error_messages={'required':'Este campo es obligatorio'})
+    new_password2 = forms.CharField(widget=forms.PasswordInput,required=True,error_messages={'required':'Este campo es obligatorio'})
 
     class Meta:
         model = get_user_model()
         fields = [
-            'current_password',
-            'new_password',
-            'confirm_password'
+            'old_password',
+            'new_password1',
+            'new_password2'
         ]
 
-        """current_password = cleaned_data.get('current-password')
-        new_password = cleaned_data.get('new-password')
-        confirm_password = cleaned_data.get('confirm-password')"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Personalizar errores de new_password1
+        self.fields["new_password1"].error_messages.update({
+            "password_too_similar": "La nueva contraseña es demasiado similar a tu información personal.",
+            "password_too_short": "La nueva contraseña debe tener al menos 8 caracteres.",
+            "password_too_common": "La nueva contraseña es demasiado común.",
+            "password_entirely_numeric": "La nueva contraseña no puede contener solo números.",
+        })
+
+    
+
+    def clean_old_password(self):
+
+        old_password = self.cleaned_data.get('old_password')
+        if not self.user.check_password(old_password):
+            raise ValidationError('Contraseña actual incorrecta.')
+        return old_password
+    
+    def clean_new_password1(self):
+
+        new_password1 = self.cleaned_data.get("new_password1")
+        print(f"-------{new_password1}--------")
+        if not new_password1:
+            raise ValidationError("Este campo no puede estar vacio")
+        return new_password1
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password1 = cleaned_data.get('new_password1')
+        new_password2 = cleaned_data.get('new_password2')
+
+        print("=================")
+        print("New1: ",new_password1," New2: ",new_password2)
+        print("=================")
+
+        if new_password1 != new_password2:
+            raise ValidationError({"new_password2":"Las contraseñas no coinciden"})
+        print("Contraseña usuario",self.user.password)
+        if self.user.check_password(new_password2):
+            raise ValidationError({"new_password1":"La contraseña no puede ser igual a la actual",
+                                   "new_password2":"La contraseña no puede ser igual a la actual"})
+        print("old_password: ", self.data.get('old_password')) 
+        return cleaned_data

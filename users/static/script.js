@@ -21,25 +21,25 @@ function confirmEdit(inputId, modificarId, optionsId) {
 function enablePasswordEdit() {
     document.getElementById('default-password').classList.add('hidden');
     document.getElementById('edit-options-password').classList.remove('hidden');
-    document.getElementById('current-password').disabled = false;
-    document.getElementById('new-password').disabled = false;
-    document.getElementById('confirm-password').disabled = false;
+    document.getElementById('old_password').disabled = false;
+    document.getElementById('new_password1').disabled = false;
+    document.getElementById('new_password2').disabled = false;
 
 }
 function cancelPasswordEdit() {
     document.getElementById('edit-options-password').classList.add('hidden');
     document.getElementById('default-password').classList.remove('hidden');
-    document.getElementById('current-password').value = '';
-    document.getElementById('new-password').value = '';
-    document.getElementById('confirm-password').value = '';
-    document.getElementById('current-password').disabled = true;
-    document.getElementById('new-password').disabled = true;
-    document.getElementById('confirm-password').disabled = true;
+    document.getElementById('old_password').value = '';
+    document.getElementById('new_password1').value = '';
+    document.getElementById('new_password2').value = '';
+    document.getElementById('old_password').disabled = true;
+    document.getElementById('new_password1').disabled = true;
+    document.getElementById('new_password2').disabled = true;
 }
 function confirmPasswordEdit() {
     document.getElementById('edit-options-password').classList.add('hidden');
     document.getElementById('default-password').classList.remove('hidden');
-    document.getElementById('current-password').value = '';
-    document.getElementById('new-password').value = '';
-    document.getElementById('confirm-password').value = '';
+    document.getElementById('old_password').value = '';
+    document.getElementById('new_password1').value = '';
+    document.getElementById('new_password2').value = '';
 }
