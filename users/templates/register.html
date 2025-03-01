@@ -16,7 +16,7 @@
         <article class="flex flex-col justify-center items-center bg-white rounded-lg p-6 shadow-md shadow-lg shadow-gray-500 w-full lg:w-[80%]">
 
             <!-- Formulario de registro -->
-            <form method="post" class="flex flex-col items-center w-full">
+            <form method="post" class="flex flex-col  w-full">
                 {% csrf_token %}
                 <div class="mb-6 text-center">
                     <h1 class="text-4xl font-bold text-[#05141E] mb-[2px]">Registrarse</h1>
@@ -24,11 +24,22 @@
                 </div>
 
 
-                    <input name="username" {% if form.password.errors or form.email.errors and not form.username.errors %} value="{{form.username.value}}" {% endif %} placeholder="{% if form.username.errors %}{{ form.username.errors.0 }}{% else %}Nombre de usuario{% endif %}" type="text" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="email" {% if form.password.errors or form.username.errors and not form.email.errors %} value="{{form.email.value}}" {% endif %} placeholder="{% if form.email.errors %}{{ form.email.errors.0 }}{% else %}Correo electrónico{% endif %}" type="email" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="password1" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="password2" placeholder="{% if form.password2.errors %}{{ form.password2.errors.0 }}{% else %}Confirmar Contraseña{% endif %}" type="password" class="mb-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-
+                    <input name="username" {% if form.password.errors or form.email.errors and not form.username.errors %} value="{{form.username.value}}" {% endif %} placeholder="Nombre de usuario" type="text" class="mt-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[18px] border-red-400 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    {% if form.username.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                    <input name="email" {% if form.password.errors or form.username.errors and not form.email.errors %} value="{{form.email.value}}" {% endif %} placeholder="Correo electrónico" type="email" class="mt-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[18px] border-red-400 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    {% if form.email.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                    <input name="password1" placeholder="Contraseña" type="password" class="mt-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[18px] border-red-400 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    {% if form.password1.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.password1.errors.0 }}</p>
+                    {% endif %}
+                    <input name="password2" placeholder="Confirmar Contraseña" type="password" class="mt-4 text-[19px] rounded-lg border {% if form.password2.errors %} placeholder:text-[18px] border-red-400 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    {% if form.password2.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ form.password2.errors.0 }}</p>
+                    {% endif %}
                     <button type="submit" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-md hover:bg-[#0A1F2F]">Registrarme</button>
             
                 <div class="flex items-center w-full my-6">

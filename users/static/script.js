@@ -43,3 +43,10 @@ function confirmPasswordEdit() {
     document.getElementById('new_password1').value = '';
     document.getElementById('new_password2').value = '';
 }
+
+function enableProfilePicture() {
+    document.getElementById("input-profile").disabled = false;
+}
+
+
+

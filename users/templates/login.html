@@ -23,10 +23,18 @@
                 </div>
                 
                 <div class="flex flex-col w-full">
-                    <input name="username" {% if form.password.errors and not form.username.errors %} value="{{form.username.value}}" {% endif %} placeholder="{% if form.username.errors %}{{ form.username.errors.0 }}{% else %}Correo electrónico o usuario {% endif %}" type="text" 
-                        class="mb-4 text-[19px] rounded-lg border {% if form.username.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
-                    <input name="password" placeholder="{% if form.password.errors %}{{ form.password.errors.0 }} {% else %}Contraseña{% endif %}" type="password" 
-                        class="mb-2 text-[19px] rounded-lg border {% if form.password.errors %} placeholder:text-[15px] placeholder-red-500 bg-red-100 border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                    <input name="username" {% if form.password.errors and not form.username.errors %} value="{{form.username.value}}" {% endif %} placeholder="Correo electrónico o usuario" type="text" 
+                        class="mt-4 text-[19px] rounded-lg border {% if form.username.errors %} placeholder:text-[18px] border-red-400 p-4 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+                        {% if form.username.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
+                        {% endif %}
+                    <input name="password" placeholder="Contraseña" type="password" 
+                        class="mt-4 text-[19px] rounded-lg border {% if form.password.errors %} placeholder:text-[18px] border-red-400 {% else %} border-gray-300 {% endif %} focus:outline-none focus:ring-1 focus:ring-[#05141E] p-3 w-full">
+
+                        {% if form.password.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+
                     <a class="text-sm hover:underline text-[#05141E] mt-2" href="#">He olvidado mi contraseña</a>
                     <button type="submit" class="mt-6 text-[19px] w-full bg-[#05141E] rounded-lg p-3 text-white font-semibold shadow-lg hover:bg-[#0A1F2F]">Iniciar sesión</button>
                 </div>
