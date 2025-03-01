@@ -14,14 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib import admin  # Importa la vista de administración de Django.
+from django.urls import path, include  # Importa las funciones para definir rutas y incluir otras configuraciones de URL.
+from django.conf import settings  # Importa la configuración del proyecto.
+from django.conf.urls.static import static  # Importa la función para servir archivos estáticos y de medios en modo desarrollo.
 
+# Aquí se definen las rutas principales del proyecto.
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('users.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
- 
+    path('admin/', admin.site.urls),  # Ruta para acceder a la vista de administración de Django (ej. http://localhost:8000/admin/).
+    path('', include('users.urls')),  # Incluye las URLs de la aplicación 'users', las cuales están definidas en 'users.urls'.
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Sirve archivos de medios (como imágenes) durante el desarrollo.
