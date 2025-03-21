@@ -136,3 +136,10 @@ def logout_view(request):
     # Vista para cerrar sesión del usuario.
     logout(request)
     return redirect("index")
+
+def delete_acount(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+        return redirect("index")
+    
+    return redirect("log")
