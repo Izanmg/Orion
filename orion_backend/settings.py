@@ -139,16 +139,11 @@ USE_TZ = True
 
 # settings.py
 
-# Ruta a los archivos estáticos
 STATIC_URL = '/static/'
-
-# Esta es la ruta donde Django copiará todos los archivos estáticos cuando ejecutes `collectstatic`
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Asegúrate de que tu carpeta de imágenes está bajo el directorio estático
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'users/static/img'),
+    BASE_DIR / "static",  # Asegúrate de que las carpetas estén bien definidas
 ]
+
 
 
 # Default primary key field type
