@@ -11,6 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia todo el código del proyecto al contenedor
 COPY . .
 
+# Define la variable GOOGLE_ENTRYPOINT
+ENV GOOGLE_ENTRYPOINT gunicorn orion.wsgi:application --bind 0.0.0.0:8080
+
 # Expone el puerto en el que correrá Django
 EXPOSE 8000
 
