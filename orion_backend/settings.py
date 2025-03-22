@@ -140,9 +140,11 @@ USE_TZ = True
 # settings.py
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Asegúrate de que las carpetas estén bien definidas
+    os.path.join(BASE_DIR, 'users/static'),  # Ruta correcta para la carpeta 'static' dentro de 'users'
 ]
+
 
 
 
