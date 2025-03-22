@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l8n^xoazbk85_b8!y)wg))o0hg8=dih-uf9+glp^+0n0)ghd9y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['orion-v1-194504047605.europe-west1.run.app']
 
 
 # Application definition
