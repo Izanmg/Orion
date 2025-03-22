@@ -18,4 +18,4 @@ ENV GOOGLE_ENTRYPOINT "gunicorn orion.wsgi:application --bind 0.0.0.0:8080"
 EXPOSE 8080
 
 # Ejecuta migraciones y luego inicia el servidor
-CMD ["gunicorn", "orion.wsgi:application", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "orion_backend.wsgi:application", "--bind", "0.0.0.0:8080"]
