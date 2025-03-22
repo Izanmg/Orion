@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['orion-v1-194504047605.europe-west1.run.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://orion-v1-194504047605.europe-west1.run.app',]
+
 
 # Application definition
 
