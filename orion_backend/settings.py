@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 # settings.py
+GS_BUCKET_NAME = "orion-static-bucket"  # Reemplaza con el nombre de tu bucket
+GS_STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
 
-STATIC_URL = '/static/'
+STATIC_URL = GS_STATIC_URL
 
 # En producción, usar un directorio específico para los archivos estáticos
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -153,6 +156,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 LOGOUT_REDIRECT_URL = reverse_lazy('')
 
