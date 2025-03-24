@@ -141,9 +141,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'users/static'),  # Ruta correcta para la carpeta 'static' dentro de 'users'
-]
+# En producción, usar un directorio específico para los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 
